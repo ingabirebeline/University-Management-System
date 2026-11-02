@@ -21,6 +21,7 @@ public class Main {
             System.out.println("6. Remove course");
             System.out.println("7. Enroll student in course");
             System.out.println("8. Show students with their courses");
+            System.out.println("9. Change enrollment course");
             System.out.println("0. Exit");
             System.out.print("Choose: ");
 
@@ -65,20 +66,36 @@ public class Main {
                         enrollmentDAO.enroll(studentId, courseId);
                         System.out.println("Enrolled.");
                         break;
+
+
                     case 8:
                         enrollmentDAO.showStudentsWithCourses();
                         break;
+
+                    case 9: {
+                        System.out.print("Enrollment id: ");
+                        int enrollmentId = Integer.parseInt(sc.nextLine());
+
+                        System.out.print("New course id: ");
+                        int newCourseId = Integer.parseInt(sc.nextLine());
+
+                        enrollmentDAO.changeCourse(enrollmentId, newCourseId);
+                        System.out.println("Enrollment updated.");
+                        break;
+                    }
                     case 0:
                         System.out.println("Goodbye!");
                         break;
+
                     default:
-                        System.out.println("Choose a number from 0 to 8.");
+                        System.out.println("Choose a number from 0 to 9.");
                 }
 
             } catch (NumberFormatException e) {
                 System.out.println("Please type a number.");
             } catch (Exception e) {
                 System.out.println("Database error: " + e.getMessage());
+
             }
         }
     }}
